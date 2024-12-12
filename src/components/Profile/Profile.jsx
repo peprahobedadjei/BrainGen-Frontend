@@ -52,7 +52,7 @@ const Profile = () => {
               activeTab === "predict" ? "text-blue-600" : "text-n-1/50"
             } hover:text-blue-600`}
           >
-            Make a Preiction
+            Make a Prediction
           </a>
           <a
             href="/chat"
