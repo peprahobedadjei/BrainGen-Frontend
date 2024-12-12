@@ -28,7 +28,7 @@ const SignIn = () => {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/auth/login",
+        "https://brainwave-docker-gcr-image-539472932670.europe-west1.run.app/auth/login",
         formData
       );
       const { data } = response.data;

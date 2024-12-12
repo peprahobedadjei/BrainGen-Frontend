@@ -61,7 +61,7 @@ const Verification = () => {
     const verificationCode = codes.join(""); // Combine the digits into a single string
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/auth/activate", {
+      const response = await axios.post("https://brainwave-docker-gcr-image-539472932670.europe-west1.run.app/auth/activate", {
         email,
         verification_code: verificationCode,
       });

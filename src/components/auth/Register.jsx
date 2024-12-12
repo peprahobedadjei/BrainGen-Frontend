@@ -32,7 +32,7 @@ const Register = () => {
     setLoading(true); // Show loader
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/auth/signup", formData);
+      const response = await axios.post("https://brainwave-docker-gcr-image-539472932670.europe-west1.run.app/auth/signup", formData);
       setSuccessMessage(response.data.message);
       setIsModalOpen(true); // Open the modal on success
     } catch (error) {
