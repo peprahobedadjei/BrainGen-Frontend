@@ -435,7 +435,7 @@ const Predict = () => {
                 </>
               ) : (
                 <Button white onClick={handleClearMemory}>
-                  <Button>Clear Memory</Button>
+                  Clear Memory
                 </Button>
               )}
             </div>
