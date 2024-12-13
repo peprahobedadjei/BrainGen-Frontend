@@ -128,7 +128,7 @@ const SignIn = () => {
                   </div>
                 ) : (
                   <Button white className="w-full" type="submit">
-                    Create Account
+                    Log In
                   </Button>
                 )}
 

@@ -34,7 +34,7 @@ const Predict = () => {
     const fetchModels = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/predict/models`
+          `https://brainwave-docker-gcr-image-539472932670.europe-west1.run.app/predict/models`
         );
         const modelItems = response.data.items
           .filter(
@@ -58,7 +58,7 @@ const Predict = () => {
   //   const fetchFolders = async () => {
   //     try {
   //       const response = await axios.get(
-  //         `http://127.0.0.1:8000/predict/${userid}/list-folders`
+  //         `https://brainwave-docker-gcr-image-539472932670.europe-west1.run.app/predict/${userid}/list-folders`
   //       );
   //       const folderItems = response.data.folders.map(
   //         (folder) => folder.split("/")[1] // Extract only the folder name
@@ -86,7 +86,7 @@ const Predict = () => {
       }
 
       const response = await axios.post(
-        `http://127.0.0.1:8000/predict/${userid}/upload-images`,
+        `https://brainwave-docker-gcr-image-539472932670.europe-west1.run.app/predict/${userid}/upload-images`,
         formData,
         {
           headers: {
@@ -118,7 +118,7 @@ const Predict = () => {
     try {
       setIsCreating(true);
       const response = await axios.post(
-        `http://127.0.0.1:8000/predict/${userid}/create-folder`
+        `https://brainwave-docker-gcr-image-539472932670.europe-west1.run.app/predict/${userid}/create-folder`
       );
       setMessage(response.data.message);
       setMessageType(response.data.status === "success" ? "success" : "error");
@@ -139,7 +139,7 @@ const Predict = () => {
     try {
       setIsClearing(true);
       const response = await axios.post(
-        `http://127.0.0.1:8000/predict/models/clear-memory`
+        `https://brainwave-docker-gcr-image-539472932670.europe-west1.run.app/predict/models/clear-memory`
       );
       setMessage(response.data.message);
       setMessageType(response.data.status === "success" ? "success" : "info");
@@ -166,7 +166,7 @@ const Predict = () => {
     try {
       setIsLoadingModel(true);
       const response = await axios.post(
-        `http://127.0.0.1:8000/predict/models/load`,
+        `https://brainwave-docker-gcr-image-539472932670.europe-west1.run.app/predict/models/load`,
         {
           model_name: selectedModel,
         }
@@ -196,7 +196,7 @@ const Predict = () => {
     try {
       setIsLoadingFiles(true);
       const response = await axios.get(
-        `http://127.0.0.1:8000/predict/${userid}/list-files`
+        `https://brainwave-docker-gcr-image-539472932670.europe-west1.run.app/predict/${userid}/list-files`
       );
       setImages(
         response.data.files.map(
@@ -223,7 +223,7 @@ const Predict = () => {
     try {
       setIsPredicting(true);
       const response = await axios.post(
-        `http://127.0.0.1:8000/predict/models/${userid}/gradcam`
+        `https://brainwave-docker-gcr-image-539472932670.europe-west1.run.app/predict/models/${userid}/gradcam`
       );
       const { visualizations } = response.data;
 
@@ -342,25 +342,32 @@ const Predict = () => {
 
               {/* Section 4 */}
               <div className="rounded-lg p-4  items-center space-x-4">
-                {isCreating ? (
-                  <>
-                    <div className="loader text-sm">
-                      Creating Folder.Please wait...
-                    </div>
-                  </>
-                ) : (
+ 
                   <Button white onClick={handleCreateFolder}>
-                    Create a Folder
+                    {isCreating ? <>Creating ...</> : <>Create a Folder</>}
                   </Button>
-                )}
+              
 
                 <Button white onClick={handleGradCam}>
                   {isPredicting ? <>Predicting ...</> : <>Start Predicting</>}
                 </Button>
+                <div className="flex justify-center space-x-4">
+              {isClearing ? (
+                <>
+                  <div className="loader text-sm mt-3 ">
+                    Clearing Memory.Please wait...
+                  </div>
+                </>
+              ) : (
+                <Button  onClick={handleClearMemory} className="mt-3">
+                  Clear Memory
+                </Button>
+              )}
+            </div>
               </div>
             </div>
             <div className="lg:col-span-2 mt-10">
-              <div className="flex flex-wrap gap-4 justify-center">
+              <div className="flex flex-wrap gap-4 justify-center border-dashed border-2 border-gray-800 h-56 p-2">
                 {images.length > 0 ? (
                   images.map((image, index) => (
                     <div
@@ -385,7 +392,7 @@ const Predict = () => {
               </h2>
               {isPredicting ? <></> : <></>}
               {/* Section 2: "Vieworiginal Image links "*/}
-              <div className="flex flex-wrap gap-4 justify-center">
+              <div className="flex flex-wrap gap-4 justify-center border-dashed border-2 border-gray-800 h-56 p-2">
                 {predictimages.originals &&
                 predictimages.originals.length > 0 ? (
                   predictimages.originals.map((image, index) => (
@@ -406,7 +413,7 @@ const Predict = () => {
               </div>
 
               {/* Section 2: "View gradcam" imag links  */}
-              <div className="flex flex-wrap gap-4 justify-center mt-5">
+              <div className="flex flex-wrap gap-4 justify-center border-dashed border-2 border-gray-800 h-56 p-2">
                 {predictimages.gradcams && predictimages.gradcams.length > 0 ? (
                   predictimages.gradcams.map((image, index) => (
                     <div
@@ -426,19 +433,6 @@ const Predict = () => {
               </div>
             </div>
             {/* Section 3: 2 buttons arranged horizontally in the center */}
-            <div className="flex justify-center space-x-4">
-              {isClearing ? (
-                <>
-                  <div className="loader text-sm">
-                    Clearing Memory.Please wait...
-                  </div>
-                </>
-              ) : (
-                <Button  onClick={handleClearMemory}>
-                  Clear Memory
-                </Button>
-              )}
-            </div>
           </div>
 
           <Gradient />

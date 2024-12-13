@@ -27,7 +27,7 @@ const Profile = () => {
   }, [currentLocation]);
 
   return (
-    <div className="fixed top-3 left-0 w-full z-50 border-b border-n-6 lg:bg-n-8/90 lg:backdrop-blur-sm h-20">
+    <div className="fixed top-0 left-0 w-full z-50 border-b border-n-6 lg:bg-n-8/90 lg:backdrop-blur-sm h-20">
       <div className="flex items-center justify-between px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
         {/* User Info Section */}
 
