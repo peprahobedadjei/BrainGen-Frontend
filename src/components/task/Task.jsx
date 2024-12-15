@@ -35,14 +35,7 @@ const Task = () => {
       backgroundUrl: "./src/assets/benefits/card-2.svg",
       light: true,
       url: "/generate",
-    },
-    {
-      id: "2",
-      title: "Lets Discuss",
-      text: "Connect with a BrainGen chatbot which has a database of the latest Brain Tumor Papers to know more.",
-      backgroundUrl: "./src/assets/benefits/card-3.svg",
-      url: "/chat",
-    },
+    }
   ];
 
   return (

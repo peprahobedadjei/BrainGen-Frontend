@@ -54,14 +54,6 @@ const Profile = () => {
           >
             Make a Prediction
           </a>
-          <a
-            href="/chat"
-            className={`text-sm font-medium ${
-              activeTab === "chat" ? "text-blue-600" : "text-n-1/50"
-            } hover:text-blue-600`}
-          >
-            Chat with BrainGen
-          </a>
         </div>
 
         {/* Right Side Actions */}
