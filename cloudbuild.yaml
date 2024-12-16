@@ -1,0 +1,13 @@
+steps:
+#Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build','-t', 'europe-west1-docker.pkg.dev/the-challenge-433814/brainwave-frontend-docker-gcr/brainwave-frontend-docker-gcr-image:tag1','.']
+#Push Image to Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'europe-west1-docker.pkg.dev/the-challenge-433814/brainwave-frontend-docker-gcr/brainwave-frontend-docker-gcr-image:tag1']
+#Deploy to Google Cloud run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'brainwave-frontend-docker-gcr-image', '--image','europe-west1-docker.pkg.dev/the-challenge-433814/brainwave-frontend-docker-gcr/brainwave-frontend-docker-gcr-image:tag1', '--region', 'europe-west1']
+images:
+- 'europe-west1-docker.pkg.dev/the-challenge-433814/brainwave-frontend-docker-gcr/brainwave-frontend-docker-gcr-image:tag1'
