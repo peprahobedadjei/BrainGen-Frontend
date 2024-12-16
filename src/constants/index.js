@@ -1,7 +1,6 @@
 import {
   benefitIcon1,
   benefitIcon2,
-  benefitIcon3,
   benefitImage2,
   chromecast,
   disc02,
@@ -257,14 +256,6 @@ export const benefits = [
     iconUrl: benefitIcon2,
     imageUrl: benefitImage2,
     light: true,
-  },
-  {
-    id: "2",
-    title: "Lets Discuss",
-    text: "Connect with an BrainGen chatbot which has data base of latest Brain Tumore Papers to know more.",
-    backgroundUrl: "./src/assets/benefits/card-3.svg",
-    iconUrl: benefitIcon3,
-    imageUrl: benefitImage2,
   }
 ];
 
